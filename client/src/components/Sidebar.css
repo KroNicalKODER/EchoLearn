@@ -1,0 +1,11 @@
+.arrow-transition {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateX(15px);
+}
+
+li:hover .arrow-transition {
+    opacity: 1;
+    transform: translateX(0);
+}
+

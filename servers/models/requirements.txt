@@ -1,0 +1,6 @@
+newsapi-python
+wikipedia-api
+flask
+flask-cors
+langchain
+langchain-core
