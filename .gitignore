@@ -1,4 +1,4 @@
 node_modules
 major_2
 config.js
-config
+.env
