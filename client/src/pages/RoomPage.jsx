@@ -3,6 +3,7 @@ import ReactPlayer from "react-player";
 import peer from "../services/peer";
 
 import { useSocket } from "../contexts/SocketProvider";
+import { saveTranscript } from "../api/transcript";
 
 const RoomPage = () => {
   const socket = useSocket();
@@ -11,7 +12,8 @@ const RoomPage = () => {
   const [remoteStream, setRemoteStream] = useState();
   const [speech, setSpeech] = useState("");
   const [recognition, setRecognition] = useState(null);
-  const [isListening, setIsListening] = useState(false) 
+  const [isListening, setIsListening] = useState(false);
+  const [roomId, setRoomId] = useState("");
 
   const handlePushAndTalk = () => {
     if(!recognition) {
@@ -26,7 +28,7 @@ const RoomPage = () => {
       setIsListening(true);
     }
 
-    recognition.onresult = (event) => {
+    recognition.onresult = async (event) => {
       let finalTranscript = "";
       for (let i = event.resultIndex; i < event.results.length; i++) {
         if (event.results[i].isFinal) {
@@ -34,6 +36,7 @@ const RoomPage = () => {
         }
       }
       setSpeech((prevSpeech) => prevSpeech + " " + finalTranscript);
+      await saveTranscript(finalTranscript, roomId);
     };
 
     recognition.onerror = (event) => {
@@ -43,7 +46,6 @@ const RoomPage = () => {
 
     recognition.onend = () => {
       setIsListening(false);
-      
     };
 
   };
@@ -67,6 +69,7 @@ const RoomPage = () => {
 
   const handleUserJoined = useCallback(({ email, id, password, roomId }) => {
     console.log(email, id, password, roomId);
+    setRoomId(roomId);
     setRemoteSocketId(id);
   }, []);
 
