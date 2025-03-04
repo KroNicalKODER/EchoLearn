@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import authRoutes from "./routes/auth.routes.js";
 import transcriptRoutes from "./routes/transcript.routes.js";
 import cors from 'cors';
+import convertTextGridToJSON from './utils/textGridToJSON/index.js';
+
 dotenv.config();
 
 const app = express();
@@ -16,6 +18,18 @@ app.use(cors({
 
 app.use('/auth', authRoutes);
 app.use('/transcript', transcriptRoutes);
+
+app.post('/tgtojson', async (req, res) => {
+    try {
+        const json = await convertTextGridToJSON();
+        // Getting only phones from the JSON
+        const phones = json.data.tiers.find(tier => tier.name === 'phones').intervals.map(interval => interval.text);
+        console.log(phones);
+        res.status(200).json({phones: phones});
+    } catch (error) {
+        res.status(500).json({ code: 500, error: 'Internal Server Error', message: error });
+    }
+});
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {

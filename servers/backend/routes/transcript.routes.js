@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getTranscripts, saveTranscript } from '../controllers/transcript.controllers';
+import { getTranscripts, saveTranscript } from '../controllers/transcript.controllers.js';
 
 const router = express.Router();
 
