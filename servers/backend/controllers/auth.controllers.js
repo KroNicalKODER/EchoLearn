@@ -28,6 +28,10 @@ export const login = async (req, res) => {
     }
 };
 
+const generateUsername = (name) => {
+    return name.toLowerCase() + Math.floor(Math.random() * 1000);
+}
+
 export const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -38,6 +42,13 @@ export const register = async (req, res) => {
             return res.status(400).json({ message: 'User or username already exists' });
         }
 
+        let username;
+        let checkUsername;
+        do {
+            username = generateUsername(name);
+            checkUsername = await User.findOne({ username });
+        } while (checkUsername);
+
         // Hash password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -46,6 +57,7 @@ export const register = async (req, res) => {
         const user = await User.create({
             name,
             email,
+            username,
             password: hashedPassword,
         });
 
