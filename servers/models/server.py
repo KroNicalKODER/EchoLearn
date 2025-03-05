@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from RandomExercise import generate_random_exercise, translate
 import wikipediaapi
@@ -10,9 +10,12 @@ from pydub import AudioSegment
 import io
 import os
 import subprocess
+import time
 import soundfile as sf
 from pydub import AudioSegment
 import tempfile
+from langchain_ollama import OllamaLLM
+from langchain.prompts import ChatPromptTemplate
 
 UPLOAD_FOLDER = 'uploads'
 OUTPUT_FOLDER = 'output'
@@ -24,6 +27,8 @@ if not os.path.exists(OUTPUT_FOLDER):
     os.makedirs(OUTPUT_FOLDER)
 if not os.path.exists(UPLOADS1_FOLDER):
     os.makedirs(UPLOADS1_FOLDER)
+if not os.path.exists('static'):
+    os.makedirs('static')
 
 
 load_dotenv()
@@ -226,6 +231,61 @@ def transcribe_audio():
         return jsonify({'error': f"Could not request results from Google Speech Recognition service; {e}"}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+llama = OllamaLLM(model="llama3.2")
+
+@app.route('/generate-response', methods=['POST'])
+def generate_response():
+    data = request.get_json()
+    input_text = data.get("text", "")
+
+    print(input_text)
+
+    if not input_text:
+        return jsonify({"error": "No text provided"}), 400
+
+    # Define a basic prompt template for conversation
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", """You are a helpful assistant. you have to provide me with the response to the questions you are being asked. 
+         Try to be as helpful as possible. Also don't be exaggerated with your answers. Try to be normal and human-like. Also
+         restrict you answers to 100 words maximum."""),
+        ("user", input_text)
+    ])
+
+    formatted_prompt = prompt.format(messages=[("user", input_text)])
+
+    # Generate the response from Llama 3.2 via LangChain
+    response = llama.invoke(formatted_prompt)
+    print(response)
+
+    if not response:
+        return jsonify({"error": "No response generated from Llama model"}), 500
+
+    # Convert the generated text to speech (audio)
+    tts = gTTS(response)
+
+    # Clear the static folder
+    for filename in os.listdir('static'):
+        file_path = os.path.join('static', filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            return jsonify({"error": f"Failed to clear static folder: {str(e)}"}), 500
+
+    # Save the file with a different name every time
+    audio_filename = f"response_audio_{int(time.time())}.mp3"
+    audio_path = os.path.join('static', audio_filename)
+    tts.save(audio_path)
+
+    # Return the path to the audio file (frontend will fetch this URL)
+    return jsonify({"audio_url": f"/static/{audio_filename}"})
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
 
 if __name__ == '__main__':
         app.run(debug=True)
