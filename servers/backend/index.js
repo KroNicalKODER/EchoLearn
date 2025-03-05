@@ -19,6 +19,10 @@ app.use(cors({
 app.use('/auth', authRoutes);
 app.use('/transcript', transcriptRoutes);
 
+app.use('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 app.post('/tgtojson', async (req, res) => {
     try {
         const json = await convertTextGridToJSON();

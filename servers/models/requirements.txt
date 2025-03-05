@@ -4,3 +4,5 @@ flask
 flask-cors
 langchain
 langchain-core
+torch
+transformers

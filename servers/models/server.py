@@ -1,15 +1,19 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from RandomExercise import generate_random_exercise, translate
 import wikipediaapi
 from newsapi import NewsApiClient
 from dotenv import load_dotenv
 import os
+from concurrent.futures import ThreadPoolExecutor
+
+from RandomExercise import generate_random_exercise, translate
+from Translation import translate_text
 
 load_dotenv()
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
+executor = ThreadPoolExecutor(max_workers=5)
 
 @app.route('/generate_random_exercise', methods=['POST'])
 def generate_random_exercise_route():
@@ -63,8 +67,14 @@ def translate_route():
         return jsonify({"error": "Missing required Parameters"}), 400
     
     try:
-        response = translate(from_language, to_language, text)
-        return jsonify({"response": response})
+        future1 = executor.submit(translate_text, text)
+        future2 = executor.submit(translate, from_language, to_language, text)
+        # response = translate(from_language, to_language, text)
+        # response = translate_text(text)
+        result1 = future1.result()
+        result2 = future2.result()
+        result = result1 + "\n\n" + result2
+        return jsonify({"response": result}), 200
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
