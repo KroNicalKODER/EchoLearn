@@ -28,8 +28,9 @@ app.post('/tgtojson', async (req, res) => {
         const json = await convertTextGridToJSON();
         // Getting only phones from the JSON
         const phones = json.data.tiers.find(tier => tier.name === 'phones').intervals.map(interval => interval.text);
+        const phonesByMachine = json.data1.tiers.find(tier => tier.name === 'phones').intervals.map(interval => interval.text);
         console.log(phones);
-        res.status(200).json({phones: phones});
+        res.status(200).json({phones: phones, phonesByMachine: phonesByMachine});
     } catch (error) {
         res.status(500).json({ code: 500, error: 'Internal Server Error', message: error });
     }

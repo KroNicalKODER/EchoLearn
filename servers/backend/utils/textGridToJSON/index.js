@@ -53,10 +53,13 @@ async function parseTextGrid(text) {
 export default async function convertTextGridToJSON() {
     try {
         const data = await fs.readFile('./utils/textGridToJSON/audio.TextGrid', 'utf8');
+        const data1 = await fs.readFile('./utils/textGridToJSON/audio1.TextGrid', 'utf8');
         const jsonData = await parseTextGrid(data);
+        const jsonData1 = await parseTextGrid(data1);
         await fs.writeFile('./utils/textGridToJSON/output.json', JSON.stringify(jsonData, null, 2));
+        await fs.writeFile('./utils/textGridToJSON/output1.json', JSON.stringify(jsonData1, null, 2));
         console.log('JSON file has been saved.');
-        return { code: 200, data: jsonData };
+        return { code: 200, data: jsonData, data1: jsonData1 };
     } catch (error) {
         console.error('Error:', error);
         return { code: 400, error: 'Error processing the file' };
