@@ -8,7 +8,7 @@ def generate_random_exercise(topic, tone, score, custom, external_info):
         ("system", """You are an expert language teacher give an abstract as a random exercise to a person on the topic of {topic} and in a {tone} tone.
             Remember this is abstract is for the reading exercise.
             Just generate the abstract for the reading and nothing else. Also, if the topic or tone is out of the context then just say "I don't know".
-            The abstract should be approximately of 500 words.
+            The abstract should be approximately of 50 words.
             Generate in the following format:
             
             Abstract: << GENERATE THE ABSTRACT HERE >>

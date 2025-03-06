@@ -27,7 +27,7 @@ const Sidebar = () => {
             onClick={(e) => setTempSidebarOpen(true)}
             className="ml-3 cursor-pointer px-1 py-1"
           >
-            <i class="bi bi-list"></i>
+            <i className="bi bi-list"></i>
           </button>
         </div>
       )}

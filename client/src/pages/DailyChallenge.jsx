@@ -335,29 +335,31 @@ const DailyChallenge = () => {
           </div>
         )}
 
-        {/* Display the phones */}
+        <div className="flex flex-row w-full gap-8">
+          {/* Display the phones */}
         {phones.length > 0 && (
           <div className="mt-4 p-3 w-full h-[300px] no-scrollbar overflow-scroll border-[1.5px] border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)]">
-            <h3 className="font-bold">Phones:</h3>
-            <ul>
+            <h3 className="font-bold mb-2">Phones:</h3>
+            <div className="flex flex-row gap-4 flex-wrap">
               {phones.map((phone, index) => (
-                <li key={index}>{phone}</li>
+                <p key={index}>{phone}</p>
               ))}
-            </ul>
+            </div>
           </div>
         )}
 
         {/* Display the phones by machine */}
         {phonesByMachine.length > 0 && (
           <div className="mt-4 p-3 w-full h-[300px] no-scrollbar overflow-scroll border-[1.5px] border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)]">
-            <h3 className="font-bold">Phones by Machine:</h3>
-            <ul>
+            <h3 className="font-bold mb-2">Phones by Machine:</h3>
+            <div className="flex flex-row gap-4 flex-wrap">
               {phonesByMachine.map((phone, index) => (
-                <li key={index}>{phone}</li>
+                <p key={index}>{phone}</p>
               ))}
-            </ul>
+            </div>
           </div>
         )}
+        </div>
       </div>
     </div>
   );
