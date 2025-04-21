@@ -1,8 +1,8 @@
 {
   "fileType": "ooTextFile",
   "objectClass": "TextGrid",
-  "xmin": 15.84,
-  "xmax": 16.26,
+  "xmin": 6.47,
+  "xmax": 12,
   "tiers": [
     {
       "class": "",
@@ -15,251 +15,61 @@
       "class": "IntervalTier",
       "name": "words",
       "xmin": 0,
-      "xmax": 16.26,
+      "xmax": 12,
       "intervals": [
         {
           "xmin": 0,
-          "xmax": 0.65,
+          "xmax": 1.26,
           "text": ""
         },
         {
-          "xmin": 0.65,
-          "xmax": 0.78,
-          "text": "this"
-        },
-        {
-          "xmin": 0.78,
-          "xmax": 1.1,
-          "text": "reading"
-        },
-        {
-          "xmin": 1.1,
-          "xmax": 1.54,
-          "text": "exercise"
-        },
-        {
-          "xmin": 1.54,
-          "xmax": 1.99,
-          "text": "explores"
-        },
-        {
-          "xmin": 1.99,
-          "xmax": 2.08,
-          "text": "the"
-        },
-        {
-          "xmin": 2.08,
-          "xmax": 2.54,
-          "text": "concept"
-        },
-        {
-          "xmin": 2.54,
-          "xmax": 2.7,
-          "text": "of"
-        },
-        {
-          "xmin": 2.7,
-          "xmax": 2.81,
-          "text": ""
-        },
-        {
-          "xmin": 2.81,
-          "xmax": 3.07,
-          "text": "post"
-        },
-        {
-          "xmin": 3.07,
-          "xmax": 3.47,
-          "text": "imperial"
-        },
-        {
-          "xmin": 3.47,
-          "xmax": 3.97,
-          "text": "ambitions"
-        },
-        {
-          "xmin": 3.97,
-          "xmax": 4.06,
-          "text": "in"
-        },
-        {
-          "xmin": 4.06,
-          "xmax": 4.36,
-          "text": "south"
-        },
-        {
-          "xmin": 4.36,
-          "xmax": 4.4,
-          "text": ""
-        },
-        {
-          "xmin": 4.4,
-          "xmax": 4.72,
-          "text": "asian"
-        },
-        {
-          "xmin": 4.72,
-          "xmax": 5.26,
-          "text": "politics"
-        },
-        {
-          "xmin": 5.26,
-          "xmax": 5.61,
-          "text": ""
-        },
-        {
-          "xmin": 5.61,
-          "xmax": 5.79,
-          "text": "through"
-        },
-        {
-          "xmin": 5.79,
-          "xmax": 5.87,
+          "xmin": 1.26,
+          "xmax": 1.35,
           "text": "a"
         },
         {
-          "xmin": 5.87,
-          "xmax": 6.29,
-          "text": "collection"
+          "xmin": 1.35,
+          "xmax": 1.57,
+          "text": "weakened"
         },
         {
-          "xmin": 6.29,
-          "xmax": 6.4,
-          "text": "of"
-        },
-        {
-          "xmin": 6.4,
-          "xmax": 6.82,
-          "text": "speeches"
-        },
-        {
-          "xmin": 6.82,
-          "xmax": 6.88,
+          "xmin": 1.57,
+          "xmax": 3.4,
           "text": ""
         },
         {
-          "xmin": 6.88,
-          "xmax": 7.06,
-          "text": "and"
+          "xmin": 3.4,
+          "xmax": 3.84,
+          "text": "leader"
         },
         {
-          "xmin": 7.06,
-          "xmax": 7.54,
-          "text": "articles"
+          "xmin": 3.84,
+          "xmax": 3.87,
+          "text": "or"
         },
         {
-          "xmin": 7.54,
-          "xmax": 7.69,
-          "text": "by"
+          "xmin": 3.87,
+          "xmax": 3.9,
+          "text": "a"
         },
         {
-          "xmin": 7.69,
-          "xmax": 8.25,
-          "text": "prominent"
+          "xmin": 3.9,
+          "xmax": 5.49,
+          "text": "charismatic"
         },
         {
-          "xmin": 8.25,
-          "xmax": 8.65,
-          "text": "leaders"
-        },
-        {
-          "xmin": 8.65,
-          "xmax": 8.94,
+          "xmin": 5.49,
+          "xmax": 6.15,
           "text": ""
         },
         {
-          "xmin": 8.94,
-          "xmax": 9.58,
-          "text": "examining"
+          "xmin": 6.15,
+          "xmax": 6.47,
+          "text": "figure"
         },
         {
-          "xmin": 9.58,
-          "xmax": 9.74,
-          "text": "their"
-        },
-        {
-          "xmin": 9.74,
-          "xmax": 10.27,
-          "text": "visions"
-        },
-        {
-          "xmin": 10.27,
-          "xmax": 10.48,
-          "text": "for"
-        },
-        {
-          "xmin": 10.48,
-          "xmax": 10.61,
-          "text": ""
-        },
-        {
-          "xmin": 10.61,
-          "xmax": 11.02,
-          "text": "regional"
-        },
-        {
-          "xmin": 11.02,
-          "xmax": 11.67,
-          "text": "cooperation"
-        },
-        {
-          "xmin": 11.67,
-          "xmax": 11.77,
-          "text": ""
-        },
-        {
-          "xmin": 11.77,
-          "xmax": 12.12,
-          "text": "and"
-        },
-        {
-          "xmin": 12.12,
-          "xmax": 12.42,
-          "text": "global"
-        },
-        {
-          "xmin": 12.42,
-          "xmax": 13,
-          "text": "influence"
-        },
-        {
-          "xmin": 13,
-          "xmax": 13.08,
-          "text": ""
-        },
-        {
-          "xmin": 13.08,
-          "xmax": 13.7,
-          "text": "amidst"
-        },
-        {
-          "xmin": 13.7,
-          "xmax": 14.07,
-          "text": ""
-        },
-        {
-          "xmin": 14.07,
-          "xmax": 14.58,
-          "text": "shifting"
-        },
-        {
-          "xmin": 14.58,
-          "xmax": 14.77,
-          "text": "geo"
-        },
-        {
-          "xmin": 14.77,
-          "xmax": 15.15,
-          "text": "political"
-        },
-        {
-          "xmin": 15.15,
-          "xmax": 15.84,
-          "text": "dynamics"
-        },
-        {
-          "xmin": 15.84,
-          "xmax": 16.26,
+          "xmin": 6.47,
+          "xmax": 12,
           "text": ""
         }
       ]
@@ -268,1081 +78,121 @@
       "class": "IntervalTier",
       "name": "phones",
       "xmin": 0,
-      "xmax": 16.26,
+      "xmax": 12,
       "intervals": [
         {
           "xmin": 0,
-          "xmax": 0.65,
+          "xmax": 1.26,
           "text": ""
         },
         {
-          "xmin": 0.65,
-          "xmax": 0.71,
-          "text": "DH"
+          "xmin": 1.26,
+          "xmax": 1.35,
+          "text": "AH0"
         },
         {
-          "xmin": 0.71,
-          "xmax": 0.75,
-          "text": "IH1"
-        },
-        {
-          "xmin": 0.75,
-          "xmax": 0.78,
-          "text": "S"
-        },
-        {
-          "xmin": 0.78,
-          "xmax": 0.81,
-          "text": "R"
-        },
-        {
-          "xmin": 0.81,
-          "xmax": 0.93,
-          "text": "IY1"
-        },
-        {
-          "xmin": 0.93,
-          "xmax": 0.98,
-          "text": "D"
-        },
-        {
-          "xmin": 0.98,
-          "xmax": 1.02,
-          "text": "IH0"
-        },
-        {
-          "xmin": 1.02,
-          "xmax": 1.1,
-          "text": "NG"
-        },
-        {
-          "xmin": 1.1,
-          "xmax": 1.15,
-          "text": "EH1"
-        },
-        {
-          "xmin": 1.15,
-          "xmax": 1.19,
-          "text": "K"
-        },
-        {
-          "xmin": 1.19,
-          "xmax": 1.25,
-          "text": "S"
-        },
-        {
-          "xmin": 1.25,
-          "xmax": 1.28,
-          "text": "ER0"
-        },
-        {
-          "xmin": 1.28,
+          "xmin": 1.35,
           "xmax": 1.38,
-          "text": "S"
-        },
-        {
-          "xmin": 1.38,
-          "xmax": 1.48,
-          "text": "AY2"
-        },
-        {
-          "xmin": 1.48,
-          "xmax": 1.54,
-          "text": "Z"
-        },
-        {
-          "xmin": 1.54,
-          "xmax": 1.61,
-          "text": "IH0"
-        },
-        {
-          "xmin": 1.61,
-          "xmax": 1.66,
-          "text": "K"
-        },
-        {
-          "xmin": 1.66,
-          "xmax": 1.72,
-          "text": "S"
-        },
-        {
-          "xmin": 1.72,
-          "xmax": 1.79,
-          "text": "P"
-        },
-        {
-          "xmin": 1.79,
-          "xmax": 1.85,
-          "text": "L"
-        },
-        {
-          "xmin": 1.85,
-          "xmax": 1.88,
-          "text": "AO1"
-        },
-        {
-          "xmin": 1.88,
-          "xmax": 1.95,
-          "text": "R"
-        },
-        {
-          "xmin": 1.95,
-          "xmax": 1.99,
-          "text": "Z"
-        },
-        {
-          "xmin": 1.99,
-          "xmax": 2.04,
-          "text": "DH"
-        },
-        {
-          "xmin": 2.04,
-          "xmax": 2.08,
-          "text": "IY0"
-        },
-        {
-          "xmin": 2.08,
-          "xmax": 2.16,
-          "text": "K"
-        },
-        {
-          "xmin": 2.16,
-          "xmax": 2.25,
-          "text": "AA1"
-        },
-        {
-          "xmin": 2.25,
-          "xmax": 2.3,
-          "text": "N"
-        },
-        {
-          "xmin": 2.3,
-          "xmax": 2.38,
-          "text": "S"
-        },
-        {
-          "xmin": 2.38,
-          "xmax": 2.43,
-          "text": "EH0"
-        },
-        {
-          "xmin": 2.43,
-          "xmax": 2.51,
-          "text": "P"
-        },
-        {
-          "xmin": 2.51,
-          "xmax": 2.54,
-          "text": "T"
-        },
-        {
-          "xmin": 2.54,
-          "xmax": 2.62,
-          "text": "AH1"
-        },
-        {
-          "xmin": 2.62,
-          "xmax": 2.7,
-          "text": "V"
-        },
-        {
-          "xmin": 2.7,
-          "xmax": 2.81,
-          "text": ""
-        },
-        {
-          "xmin": 2.81,
-          "xmax": 2.84,
-          "text": "P"
-        },
-        {
-          "xmin": 2.84,
-          "xmax": 2.96,
-          "text": "OW1"
-        },
-        {
-          "xmin": 2.96,
-          "xmax": 3.01,
-          "text": "S"
-        },
-        {
-          "xmin": 3.01,
-          "xmax": 3.07,
-          "text": "T"
-        },
-        {
-          "xmin": 3.07,
-          "xmax": 3.12,
-          "text": "IH0"
-        },
-        {
-          "xmin": 3.12,
-          "xmax": 3.18,
-          "text": "M"
-        },
-        {
-          "xmin": 3.18,
-          "xmax": 3.25,
-          "text": "P"
-        },
-        {
-          "xmin": 3.25,
-          "xmax": 3.28,
-          "text": "IH1"
-        },
-        {
-          "xmin": 3.28,
-          "xmax": 3.31,
-          "text": "R"
-        },
-        {
-          "xmin": 3.31,
-          "xmax": 3.34,
-          "text": "IY0"
-        },
-        {
-          "xmin": 3.34,
-          "xmax": 3.38,
-          "text": "AH0"
-        },
-        {
-          "xmin": 3.38,
-          "xmax": 3.47,
-          "text": "L"
-        },
-        {
-          "xmin": 3.47,
-          "xmax": 3.5,
-          "text": "AE0"
-        },
-        {
-          "xmin": 3.5,
-          "xmax": 3.58,
-          "text": "M"
-        },
-        {
-          "xmin": 3.58,
-          "xmax": 3.62,
-          "text": "B"
-        },
-        {
-          "xmin": 3.62,
-          "xmax": 3.65,
-          "text": "IH1"
-        },
-        {
-          "xmin": 3.65,
-          "xmax": 3.78,
-          "text": "SH"
-        },
-        {
-          "xmin": 3.78,
-          "xmax": 3.83,
-          "text": "AH0"
-        },
-        {
-          "xmin": 3.83,
-          "xmax": 3.89,
-          "text": "N"
-        },
-        {
-          "xmin": 3.89,
-          "xmax": 3.97,
-          "text": "Z"
-        },
-        {
-          "xmin": 3.97,
-          "xmax": 4.01,
-          "text": "IH0"
-        },
-        {
-          "xmin": 4.01,
-          "xmax": 4.06,
-          "text": "N"
-        },
-        {
-          "xmin": 4.06,
-          "xmax": 4.18,
-          "text": "S"
-        },
-        {
-          "xmin": 4.18,
-          "xmax": 4.33,
-          "text": "AW1"
-        },
-        {
-          "xmin": 4.33,
-          "xmax": 4.36,
-          "text": "TH"
-        },
-        {
-          "xmin": 4.36,
-          "xmax": 4.4,
-          "text": ""
-        },
-        {
-          "xmin": 4.4,
-          "xmax": 4.53,
-          "text": "EY1"
-        },
-        {
-          "xmin": 4.53,
-          "xmax": 4.64,
-          "text": "ZH"
-        },
-        {
-          "xmin": 4.64,
-          "xmax": 4.69,
-          "text": "AH0"
-        },
-        {
-          "xmin": 4.69,
-          "xmax": 4.72,
-          "text": "N"
-        },
-        {
-          "xmin": 4.72,
-          "xmax": 4.78,
-          "text": "P"
-        },
-        {
-          "xmin": 4.78,
-          "xmax": 4.83,
-          "text": "AA1"
-        },
-        {
-          "xmin": 4.83,
-          "xmax": 4.9,
-          "text": "L"
-        },
-        {
-          "xmin": 4.9,
-          "xmax": 5.02,
-          "text": "AH0"
-        },
-        {
-          "xmin": 5.02,
-          "xmax": 5.06,
-          "text": "T"
-        },
-        {
-          "xmin": 5.06,
-          "xmax": 5.11,
-          "text": "IH2"
-        },
-        {
-          "xmin": 5.11,
-          "xmax": 5.15,
-          "text": "K"
-        },
-        {
-          "xmin": 5.15,
-          "xmax": 5.26,
-          "text": "S"
-        },
-        {
-          "xmin": 5.26,
-          "xmax": 5.61,
-          "text": ""
-        },
-        {
-          "xmin": 5.61,
-          "xmax": 5.64,
-          "text": "TH"
-        },
-        {
-          "xmin": 5.64,
-          "xmax": 5.69,
-          "text": "R"
-        },
-        {
-          "xmin": 5.69,
-          "xmax": 5.79,
-          "text": "UW1"
-        },
-        {
-          "xmin": 5.79,
-          "xmax": 5.87,
-          "text": "AH0"
-        },
-        {
-          "xmin": 5.87,
-          "xmax": 5.94,
-          "text": "K"
-        },
-        {
-          "xmin": 5.94,
-          "xmax": 5.99,
-          "text": "AH0"
-        },
-        {
-          "xmin": 5.99,
-          "xmax": 6.05,
-          "text": "L"
-        },
-        {
-          "xmin": 6.05,
-          "xmax": 6.1,
-          "text": "EH1"
-        },
-        {
-          "xmin": 6.1,
-          "xmax": 6.14,
-          "text": "K"
-        },
-        {
-          "xmin": 6.14,
-          "xmax": 6.22,
-          "text": "SH"
-        },
-        {
-          "xmin": 6.22,
-          "xmax": 6.26,
-          "text": "AH0"
-        },
-        {
-          "xmin": 6.26,
-          "xmax": 6.29,
-          "text": "N"
-        },
-        {
-          "xmin": 6.29,
-          "xmax": 6.37,
-          "text": "AH1"
-        },
-        {
-          "xmin": 6.37,
-          "xmax": 6.4,
-          "text": "V"
-        },
-        {
-          "xmin": 6.4,
-          "xmax": 6.43,
-          "text": "S"
-        },
-        {
-          "xmin": 6.43,
-          "xmax": 6.53,
-          "text": "P"
-        },
-        {
-          "xmin": 6.53,
-          "xmax": 6.61,
-          "text": "IY1"
-        },
-        {
-          "xmin": 6.61,
-          "xmax": 6.69,
-          "text": "CH"
-        },
-        {
-          "xmin": 6.69,
-          "xmax": 6.75,
-          "text": "IH0"
-        },
-        {
-          "xmin": 6.75,
-          "xmax": 6.82,
-          "text": "Z"
-        },
-        {
-          "xmin": 6.82,
-          "xmax": 6.88,
-          "text": ""
-        },
-        {
-          "xmin": 6.88,
-          "xmax": 6.98,
-          "text": "AE1"
-        },
-        {
-          "xmin": 6.98,
-          "xmax": 7.01,
-          "text": "N"
-        },
-        {
-          "xmin": 7.01,
-          "xmax": 7.06,
-          "text": "D"
-        },
-        {
-          "xmin": 7.06,
-          "xmax": 7.09,
-          "text": "AA1"
-        },
-        {
-          "xmin": 7.09,
-          "xmax": 7.2,
-          "text": "R"
-        },
-        {
-          "xmin": 7.2,
-          "xmax": 7.29,
-          "text": "T"
-        },
-        {
-          "xmin": 7.29,
-          "xmax": 7.32,
-          "text": "AH0"
-        },
-        {
-          "xmin": 7.32,
-          "xmax": 7.36,
-          "text": "K"
-        },
-        {
-          "xmin": 7.36,
-          "xmax": 7.42,
-          "text": "AH0"
-        },
-        {
-          "xmin": 7.42,
-          "xmax": 7.49,
-          "text": "L"
-        },
-        {
-          "xmin": 7.49,
-          "xmax": 7.54,
-          "text": "Z"
-        },
-        {
-          "xmin": 7.54,
-          "xmax": 7.61,
-          "text": "B"
-        },
-        {
-          "xmin": 7.61,
-          "xmax": 7.69,
-          "text": "AY1"
-        },
-        {
-          "xmin": 7.69,
-          "xmax": 7.78,
-          "text": "P"
-        },
-        {
-          "xmin": 7.78,
-          "xmax": 7.83,
-          "text": "R"
-        },
-        {
-          "xmin": 7.83,
-          "xmax": 7.9,
-          "text": "AA1"
-        },
-        {
-          "xmin": 7.9,
-          "xmax": 7.96,
-          "text": "M"
-        },
-        {
-          "xmin": 7.96,
-          "xmax": 7.99,
-          "text": "AH0"
-        },
-        {
-          "xmin": 7.99,
-          "xmax": 8.05,
-          "text": "N"
-        },
-        {
-          "xmin": 8.05,
-          "xmax": 8.12,
-          "text": "AH0"
-        },
-        {
-          "xmin": 8.12,
-          "xmax": 8.16,
-          "text": "N"
-        },
-        {
-          "xmin": 8.16,
-          "xmax": 8.25,
-          "text": "T"
-        },
-        {
-          "xmin": 8.25,
-          "xmax": 8.28,
-          "text": "L"
-        },
-        {
-          "xmin": 8.28,
-          "xmax": 8.37,
-          "text": "IY1"
-        },
-        {
-          "xmin": 8.37,
-          "xmax": 8.41,
-          "text": "D"
-        },
-        {
-          "xmin": 8.41,
-          "xmax": 8.54,
-          "text": "ER0"
-        },
-        {
-          "xmin": 8.54,
-          "xmax": 8.65,
-          "text": "Z"
-        },
-        {
-          "xmin": 8.65,
-          "xmax": 8.94,
-          "text": ""
-        },
-        {
-          "xmin": 8.94,
-          "xmax": 9.02,
-          "text": "IH0"
-        },
-        {
-          "xmin": 9.02,
-          "xmax": 9.07,
-          "text": "G"
-        },
-        {
-          "xmin": 9.07,
-          "xmax": 9.14,
-          "text": "Z"
-        },
-        {
-          "xmin": 9.14,
-          "xmax": 9.25,
-          "text": "AE1"
-        },
-        {
-          "xmin": 9.25,
-          "xmax": 9.32,
-          "text": "M"
-        },
-        {
-          "xmin": 9.32,
-          "xmax": 9.37,
-          "text": "IH0"
-        },
-        {
-          "xmin": 9.37,
-          "xmax": 9.43,
-          "text": "N"
-        },
-        {
-          "xmin": 9.43,
-          "xmax": 9.48,
-          "text": "IH0"
-        },
-        {
-          "xmin": 9.48,
-          "xmax": 9.58,
-          "text": "NG"
-        },
-        {
-          "xmin": 9.58,
-          "xmax": 9.62,
-          "text": "DH"
-        },
-        {
-          "xmin": 9.62,
-          "xmax": 9.7,
-          "text": "EH1"
-        },
-        {
-          "xmin": 9.7,
-          "xmax": 9.74,
-          "text": "R"
-        },
-        {
-          "xmin": 9.74,
-          "xmax": 9.85,
-          "text": "V"
-        },
-        {
-          "xmin": 9.85,
-          "xmax": 9.91,
-          "text": "IH1"
-        },
-        {
-          "xmin": 9.91,
-          "xmax": 10.01,
-          "text": "ZH"
-        },
-        {
-          "xmin": 10.01,
-          "xmax": 10.14,
-          "text": "AH0"
-        },
-        {
-          "xmin": 10.14,
-          "xmax": 10.19,
-          "text": "N"
-        },
-        {
-          "xmin": 10.19,
-          "xmax": 10.27,
-          "text": "Z"
-        },
-        {
-          "xmin": 10.27,
-          "xmax": 10.35,
-          "text": "F"
-        },
-        {
-          "xmin": 10.35,
-          "xmax": 10.4,
-          "text": "AO1"
-        },
-        {
-          "xmin": 10.4,
-          "xmax": 10.48,
-          "text": "R"
-        },
-        {
-          "xmin": 10.48,
-          "xmax": 10.61,
-          "text": ""
-        },
-        {
-          "xmin": 10.61,
-          "xmax": 10.65,
-          "text": "R"
-        },
-        {
-          "xmin": 10.65,
-          "xmax": 10.75,
-          "text": "IY1"
-        },
-        {
-          "xmin": 10.75,
-          "xmax": 10.82,
-          "text": "JH"
-        },
-        {
-          "xmin": 10.82,
-          "xmax": 10.85,
-          "text": "AH0"
-        },
-        {
-          "xmin": 10.85,
-          "xmax": 10.89,
-          "text": "N"
-        },
-        {
-          "xmin": 10.89,
-          "xmax": 10.95,
-          "text": "AH0"
-        },
-        {
-          "xmin": 10.95,
-          "xmax": 11.02,
-          "text": "L"
-        },
-        {
-          "xmin": 11.02,
-          "xmax": 11.06,
-          "text": "K"
-        },
-        {
-          "xmin": 11.06,
-          "xmax": 11.09,
           "text": "W"
         },
         {
-          "xmin": 11.09,
-          "xmax": 11.18,
-          "text": "AA2"
-        },
-        {
-          "xmin": 11.18,
-          "xmax": 11.29,
-          "text": "P"
-        },
-        {
-          "xmin": 11.29,
-          "xmax": 11.35,
-          "text": "ER0"
-        },
-        {
-          "xmin": 11.35,
-          "xmax": 11.43,
-          "text": "EY1"
-        },
-        {
-          "xmin": 11.43,
-          "xmax": 11.56,
-          "text": "SH"
-        },
-        {
-          "xmin": 11.56,
-          "xmax": 11.64,
-          "text": "AH0"
-        },
-        {
-          "xmin": 11.64,
-          "xmax": 11.67,
-          "text": "N"
-        },
-        {
-          "xmin": 11.67,
-          "xmax": 11.77,
-          "text": ""
-        },
-        {
-          "xmin": 11.77,
-          "xmax": 11.98,
-          "text": "AE1"
-        },
-        {
-          "xmin": 11.98,
-          "xmax": 12.05,
-          "text": "N"
-        },
-        {
-          "xmin": 12.05,
-          "xmax": 12.12,
-          "text": "D"
-        },
-        {
-          "xmin": 12.12,
-          "xmax": 12.16,
-          "text": "G"
-        },
-        {
-          "xmin": 12.16,
-          "xmax": 12.21,
-          "text": "L"
-        },
-        {
-          "xmin": 12.21,
-          "xmax": 12.27,
-          "text": "OW1"
-        },
-        {
-          "xmin": 12.27,
-          "xmax": 12.33,
-          "text": "B"
-        },
-        {
-          "xmin": 12.33,
-          "xmax": 12.34,
-          "text": "AH0"
-        },
-        {
-          "xmin": 12.34,
-          "xmax": 12.42,
-          "text": "L"
-        },
-        {
-          "xmin": 12.42,
-          "xmax": 12.48,
-          "text": "IH1"
-        },
-        {
-          "xmin": 12.48,
-          "xmax": 12.53,
-          "text": "N"
-        },
-        {
-          "xmin": 12.53,
-          "xmax": 12.67,
-          "text": "F"
-        },
-        {
-          "xmin": 12.67,
-          "xmax": 12.71,
-          "text": "L"
-        },
-        {
-          "xmin": 12.71,
-          "xmax": 12.77,
-          "text": "UW0"
-        },
-        {
-          "xmin": 12.77,
-          "xmax": 12.86,
-          "text": "AH0"
-        },
-        {
-          "xmin": 12.86,
-          "xmax": 12.9,
-          "text": "N"
-        },
-        {
-          "xmin": 12.9,
-          "xmax": 13,
-          "text": "S"
-        },
-        {
-          "xmin": 13,
-          "xmax": 13.08,
-          "text": ""
-        },
-        {
-          "xmin": 13.08,
-          "xmax": 13.17,
-          "text": "AH0"
-        },
-        {
-          "xmin": 13.17,
-          "xmax": 13.26,
-          "text": "M"
-        },
-        {
-          "xmin": 13.26,
-          "xmax": 13.34,
-          "text": "IH1"
-        },
-        {
-          "xmin": 13.34,
-          "xmax": 13.53,
-          "text": "D"
-        },
-        {
-          "xmin": 13.53,
-          "xmax": 13.61,
-          "text": "S"
-        },
-        {
-          "xmin": 13.61,
-          "xmax": 13.7,
-          "text": "T"
-        },
-        {
-          "xmin": 13.7,
-          "xmax": 14.07,
-          "text": ""
-        },
-        {
-          "xmin": 14.07,
-          "xmax": 14.23,
-          "text": "SH"
-        },
-        {
-          "xmin": 14.23,
-          "xmax": 14.31,
-          "text": "IH1"
-        },
-        {
-          "xmin": 14.31,
-          "xmax": 14.4,
-          "text": "F"
-        },
-        {
-          "xmin": 14.4,
-          "xmax": 14.45,
-          "text": "T"
-        },
-        {
-          "xmin": 14.45,
-          "xmax": 14.5,
-          "text": "IH0"
-        },
-        {
-          "xmin": 14.5,
-          "xmax": 14.58,
-          "text": "NG"
-        },
-        {
-          "xmin": 14.58,
-          "xmax": 14.65,
-          "text": "JH"
-        },
-        {
-          "xmin": 14.65,
-          "xmax": 14.72,
+          "xmin": 1.38,
+          "xmax": 1.42,
           "text": "IY1"
         },
         {
-          "xmin": 14.72,
-          "xmax": 14.77,
-          "text": "OW0"
-        },
-        {
-          "xmin": 14.77,
-          "xmax": 14.81,
-          "text": "P"
-        },
-        {
-          "xmin": 14.81,
-          "xmax": 14.84,
-          "text": "AH0"
-        },
-        {
-          "xmin": 14.84,
-          "xmax": 14.87,
-          "text": "L"
-        },
-        {
-          "xmin": 14.87,
-          "xmax": 14.91,
-          "text": "IH1"
-        },
-        {
-          "xmin": 14.91,
-          "xmax": 14.94,
-          "text": "T"
-        },
-        {
-          "xmin": 14.94,
-          "xmax": 15.02,
-          "text": "AH0"
-        },
-        {
-          "xmin": 15.02,
-          "xmax": 15.09,
+          "xmin": 1.42,
+          "xmax": 1.45,
           "text": "K"
         },
         {
-          "xmin": 15.09,
-          "xmax": 15.12,
+          "xmin": 1.45,
+          "xmax": 1.48,
           "text": "AH0"
         },
         {
-          "xmin": 15.12,
-          "xmax": 15.15,
-          "text": "L"
-        },
-        {
-          "xmin": 15.15,
-          "xmax": 15.25,
-          "text": "D"
-        },
-        {
-          "xmin": 15.25,
-          "xmax": 15.35,
-          "text": "AY0"
-        },
-        {
-          "xmin": 15.35,
-          "xmax": 15.42,
+          "xmin": 1.48,
+          "xmax": 1.51,
           "text": "N"
         },
         {
-          "xmin": 15.42,
-          "xmax": 15.45,
-          "text": "AE1"
+          "xmin": 1.51,
+          "xmax": 1.57,
+          "text": "D"
         },
         {
-          "xmin": 15.45,
-          "xmax": 15.51,
-          "text": "M"
+          "xmin": 1.57,
+          "xmax": 3.4,
+          "text": ""
         },
         {
-          "xmin": 15.51,
-          "xmax": 15.56,
-          "text": "IH0"
+          "xmin": 3.4,
+          "xmax": 3.69,
+          "text": "L"
         },
         {
-          "xmin": 15.56,
-          "xmax": 15.66,
-          "text": "K"
+          "xmin": 3.69,
+          "xmax": 3.72,
+          "text": "IY1"
         },
         {
-          "xmin": 15.66,
-          "xmax": 15.84,
-          "text": "S"
+          "xmin": 3.72,
+          "xmax": 3.75,
+          "text": "D"
         },
         {
-          "xmin": 15.84,
-          "xmax": 16.26,
+          "xmin": 3.75,
+          "xmax": 3.84,
+          "text": "ER0"
+        },
+        {
+          "xmin": 3.84,
+          "xmax": 3.87,
+          "text": "ER0"
+        },
+        {
+          "xmin": 3.87,
+          "xmax": 3.9,
+          "text": "AH0"
+        },
+        {
+          "xmin": 3.9,
+          "xmax": 5.49,
+          "text": "spn"
+        },
+        {
+          "xmin": 5.49,
+          "xmax": 6.15,
+          "text": ""
+        },
+        {
+          "xmin": 6.15,
+          "xmax": 6.18,
+          "text": "F"
+        },
+        {
+          "xmin": 6.18,
+          "xmax": 6.22,
+          "text": "IH1"
+        },
+        {
+          "xmin": 6.22,
+          "xmax": 6.25,
+          "text": "G"
+        },
+        {
+          "xmin": 6.25,
+          "xmax": 6.34,
+          "text": "Y"
+        },
+        {
+          "xmin": 6.34,
+          "xmax": 6.47,
+          "text": "ER0"
+        },
+        {
+          "xmin": 6.47,
+          "xmax": 12,
           "text": ""
         }
       ]

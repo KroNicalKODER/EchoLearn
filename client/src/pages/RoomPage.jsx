@@ -1,12 +1,15 @@
-import React, { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState } from "react";
 import ReactPlayer from "react-player";
 import peer from "../services/peer";
-
+import { useAuth } from "../contexts/AuthContext";
 import { useSocket } from "../contexts/SocketProvider";
 import { saveTranscript } from "../api/transcript";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RoomPage = () => {
   const socket = useSocket();
+  const { user } = useAuth();
   const [remoteSocketId, setRemoteSocketId] = useState();
   const [myStream, setMyStream] = useState();
   const [remoteStream, setRemoteStream] = useState();
@@ -14,12 +17,16 @@ const RoomPage = () => {
   const [recognition, setRecognition] = useState(null);
   const [isListening, setIsListening] = useState(false);
   const [roomId, setRoomId] = useState("");
+  const [messages, setMessages] = useState([]);
+  const { roomId: roomIdParam } = useParams();
+  const navigate = useNavigate();
 
   const handlePushAndTalk = () => {
-    if(!recognition) {
+    if (!recognition) {
       alert("Speech recognition is not supported in this browser.");
       return;
     }
+    console.log("Push and talk", isListening);
     if (isListening) {
       recognition.stop();
       setIsListening(false);
@@ -36,7 +43,6 @@ const RoomPage = () => {
         }
       }
       setSpeech((prevSpeech) => prevSpeech + " " + finalTranscript);
-      await saveTranscript(finalTranscript, roomId);
     };
 
     recognition.onerror = (event) => {
@@ -47,7 +53,6 @@ const RoomPage = () => {
     recognition.onend = () => {
       setIsListening(false);
     };
-
   };
 
   const handleStopListening = () => {
@@ -55,7 +60,23 @@ const RoomPage = () => {
       recognition.stop();
       setIsListening(false);
     }
-  }
+  };
+
+  useEffect(() => {
+    const handleSaveTranscript = async () => {
+      await saveTranscript(speech.trimStart(), roomIdParam, user.email);
+    };
+
+    if (speech.trim() !== "" && !isListening) {
+      handleSaveTranscript();
+      socket.emit("room:message", {
+        roomId: roomIdParam,
+        message: speech.trimStart(),
+        email: user.email,
+      });
+      setSpeech("");
+    }
+  }, [speech, isListening, roomIdParam, user.email, setSpeech]);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
@@ -146,21 +167,29 @@ const RoomPage = () => {
   }, []);
 
   useEffect(() => {
-    // console.log("socket", socket)
     socket.on("user:joined", handleUserJoined);
     socket.on("incomming:call", handleIncomingCall);
     socket.on("call:accepted", handleCallAccepted);
     socket.on("peer:nego:needed", handleNegoNeedIncomming);
     socket.on("peer:nego:final", handleNegoNeedFinal);
+    socket.on("room:message", ({ message, roomId, email }) => {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { message, roomId, email },
+      ]);
+    });
     return () => {
       socket.off("user:joined", handleUserJoined);
       socket.off("incomming:call", handleIncomingCall);
       socket.off("call:accepted", handleCallAccepted);
       socket.off("peer:nego:needed", handleNegoNeedIncomming);
       socket.off("peer:nego:final", handleNegoNeedFinal);
+      socket.off("room:message");
     };
   }, [
     socket,
+    user.email,
+    roomIdParam,
     handleUserJoined,
     handleIncomingCall,
     handleCallAccepted,
@@ -169,38 +198,102 @@ const RoomPage = () => {
   ]);
 
   return (
-    <div className="w-full">
-      Room Page
-      <h2>{remoteSocketId ? "Connected" : "No one is in the room"}</h2>
-      <div className="flex flex-col gap-3 w-full justify-center items-center">
-        {remoteSocketId && <button onClick={handleCallUser}>Start Call</button>}
-        <div className="flex flex-col gap-2 w-full justify-center items-center">
-          Camera 1
-          {myStream && (
-            <ReactPlayer
-              url={myStream}
-              playing={true}
-              width="300px"
-              height="100px"
-            />
-          )}
-        </div>
-        <div className="flex flex-col gap-2 w-full justify-center items-center">
-          Camera 2
-          {remoteStream && (
-            <ReactPlayer
-              url={remoteStream}
-              playing={true}
-              width="300px"
-              height="100px"
-            />
-          )}
+    <div className="w-full min-h-screen p-6">
+      <div className="text-center text-2xl font-bold text-gray-200 mb-4">
+        Room Page
+      </div>
+      <h2 className="text-center text-lg font-medium text-gray-300 mb-6">
+        {remoteSocketId ? "Connected" : "No one is in the room"}
+      </h2>
+      <div className="flex flex-col gap-6 w-full justify-center items-center">
+        {remoteSocketId && (
+          <button
+            onClick={handleCallUser}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+          >
+            Start Call
+          </button>
+        )}
+        <div className="flex flex-row gap-6">
+          <div className="flex flex-col gap-4 w-full justify-center items-center shadow-md p-4 rounded-md">
+            <div className="font-semibold text-gray-200">Cam 1 (You)</div>
+            {myStream ? (
+              <ReactPlayer
+                url={myStream}
+                playing={true}
+                width="500px"
+                height="300px"
+                style={{ borderRadius: "8px" }}
+              />
+            ) : (
+              <div className="w-[500px] h-[300px] flex items-center justify-center rounded-md">
+                <span className="text-gray-500">No Stream</span>
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col gap-4 w-full justify-center items-center shadow-md p-4 rounded-md">
+            <div className="font-semibold text-gray-200">Cam 2</div>
+            {remoteStream ? (
+              <ReactPlayer
+                url={remoteStream}
+                playing={true}
+                width="500px"
+                height="300px"
+                className="rounded-md overflow-hidden"
+              />
+            ) : (
+              <div className="w-[500px] h-[300px] flex items-center justify-center rounded-md">
+                <span className="text-gray-500">No Stream</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      <div className="">
-        <button onClick={handlePushAndTalk}>Push And Talk</button>
-        <button onClick={handleStopListening}>Stop Listening</button>
-        <div className="">{speech}</div>
+      <div className="mt-8 shadow-md p-6 rounded-md">
+        <div className="mb-4">
+          {isListening ? (
+            <div className="text-red-500 font-semibold">Listening...</div>
+          ) : (
+            <div className="text-green-500 font-semibold">Not Listening</div>
+          )}
+        </div>
+        <div className="flex gap-4 mb-6">
+          <button
+            onClick={handlePushAndTalk}
+            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+          >
+            Push And Talk
+          </button>
+          <button
+            onClick={handleStopListening}
+            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
+          >
+            Stop Listening
+          </button>
+          <button
+            onClick={() => {
+              navigate(`/`);
+            }}
+            className="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 transition"
+          >
+            End Call
+          </button>
+        </div>
+        <div className="space-y-4">
+          {messages?.map((message, index) => (
+            <div
+              key={index}
+              className={`p-4 rounded-md ${
+                message.email === user.email
+                  ? "text-white bg-blue-700"
+                  : "text-white bg-gray-800"
+              }`}
+            >
+              <span className="font-bold">{message.email}:</span>{" "}
+              {message.message}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

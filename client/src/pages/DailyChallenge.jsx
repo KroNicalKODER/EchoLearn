@@ -19,7 +19,7 @@ const DailyChallenge = () => {
       const speechRecognition = new window.webkitSpeechRecognition();
       speechRecognition.continuous = true;
       speechRecognition.interimResults = true;
-      speechRecognition.lang = "en-US"; 
+      speechRecognition.lang = "en-US";
       setRecognition(speechRecognition);
     }
   }, []);
@@ -31,13 +31,14 @@ const DailyChallenge = () => {
   useEffect(() => {
     // Check if the browser supports media recording
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ audio: true })
+      navigator.mediaDevices
+        .getUserMedia({ audio: true })
         .then((stream) => {
           const recorder = new MediaRecorder(stream);
           setMediaRecorder(recorder);
 
           recorder.ondataavailable = (e) => {
-            const blob = new Blob([e.data], { type: 'audio/wav' });
+            const blob = new Blob([e.data], { type: "audio/wav" });
             setAudioBlob(blob);
           };
         })
@@ -82,7 +83,7 @@ const DailyChallenge = () => {
       setLoading(false);
       return;
     }
-    
+
     if (!generatedScript || generatedScript.trim() === "") {
       alert("Generated script is empty.");
       setLoading(false);
@@ -94,19 +95,21 @@ const DailyChallenge = () => {
         method: "POST",
         body: formData,
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         const transcribedText = data.transcription; // Assuming the backend returns transcribed text
-  
+
         if (!transcribedText || transcribedText.trim() === "") {
           alert("No transcription was returned from the audio.");
           setLoading(false);
           return;
         }
-  
+
         // Create a text file with the transcribed text
-        const scriptBlob = new Blob([generatedScript.split(':')[1]], { type: 'text/plain' });
+        const scriptBlob = new Blob([generatedScript.split(":")[1]], {
+          type: "text/plain",
+        });
 
         // Create a FormData object and append the text file
         const formData1 = new FormData();
@@ -122,36 +125,37 @@ const DailyChallenge = () => {
 
         const data1 = await response1.blob();
         if (response1.ok) {
+          // const response = await fetch('http://localhost:5001/tgtojson', {
+          //   method: 'POST',
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //   },
+          // })
 
-            // const response = await fetch('http://localhost:5001/tgtojson', {
-            //   method: 'POST',
-            //   headers: {
-            //     'Content-Type': 'application/json',
-            //   },
-            // })
+          const response = await axios.post(`http://localhost:5001/tgtojson`);
+          console.log("Response:", response.data);
+          setPhones(response.data.phones);
+          setPhonesByMachine(response.data.phonesByMachine);
 
-            const response = await axios.post(`http://localhost:5001/tgtojson`)
+          console.log("Response:", response);
+          console.log("Response:", response.data);
 
-            setPhones(response.data.phones);
-            setPhonesByMachine(response.data.phonesByMachine);
+          // const url = window.URL.createObjectURL(data1);
+          // const a = document.createElement("a");
+          // a.href = url;
+          // a.download = "audio_transcription.TextGrid";
+          // document.body.appendChild(a);
+          // a.click();
+          // document.body.removeChild(a);
 
-            console.log("Response:", response);
-            console.log("Response:", response.data);
-
-            // const url = window.URL.createObjectURL(data1);
-            // const a = document.createElement("a");
-            // a.href = url;
-            // a.download = "audio_transcription.TextGrid";
-            // document.body.appendChild(a);
-            // a.click();
-            // document.body.removeChild(a);
-
-            // Save the file locally for further operations
-            const localFile = new File([data1], "audio_transcription.TextGrid", { type: data1.type });
-            console.log("File saved locally:", localFile);
-          } else {
-            const errorText = await response1.json();
-            alert(`Error: ${errorText.error}`);
+          // Save the file locally for further operations
+          const localFile = new File([data1], "audio_transcription.TextGrid", {
+            type: data1.type,
+          });
+          console.log("File saved locally:", localFile);
+        } else {
+          const errorText = await response1.json();
+          alert(`Error: ${errorText.error}`);
         }
       } else {
         const errorText = await response.json();
@@ -176,11 +180,14 @@ const DailyChallenge = () => {
     recognition.stop();
 
     try {
-      const response = await fetch(`${config.flask_url}/generate_random_exercise`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic, tone, score: 60, custom: text.trim() }),
-      });
+      const response = await fetch(
+        `${config.flask_url}/generate_random_exercise`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ topic, tone, score: 60, custom: text.trim() }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
         setGeneratedScript(data.response);
@@ -233,7 +240,7 @@ const DailyChallenge = () => {
     const response = await axios.post(`http://localhost:5001/tgtojson`);
     setPhones(response.data.phones);
     setPhonesByMachine(response.data.phonesByMachine);
-  }
+  };
 
   return (
     <div className="flex w-full justify-center items-center">
@@ -337,28 +344,28 @@ const DailyChallenge = () => {
 
         <div className="flex flex-row w-full gap-8">
           {/* Display the phones */}
-        {phones.length > 0 && (
-          <div className="mt-4 p-3 w-full h-[300px] no-scrollbar overflow-scroll border-[1.5px] border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)]">
-            <h3 className="font-bold mb-2">Phones:</h3>
-            <div className="flex flex-row gap-4 flex-wrap">
-              {phones.map((phone, index) => (
-                <p key={index}>{phone}</p>
-              ))}
+          {phones && phones.length > 0 && (
+            <div className="mt-4 p-3 w-full h-[300px] no-scrollbar overflow-scroll border-[1.5px] border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)]">
+              <h3 className="font-bold mb-2">Phones:</h3>
+              <div className="flex flex-row gap-4 flex-wrap">
+                {phones.map((phone, index) => (
+                  <p key={index}>{phone}</p>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Display the phones by machine */}
-        {phonesByMachine.length > 0 && (
-          <div className="mt-4 p-3 w-full h-[300px] no-scrollbar overflow-scroll border-[1.5px] border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)]">
-            <h3 className="font-bold mb-2">Phones by Machine:</h3>
-            <div className="flex flex-row gap-4 flex-wrap">
-              {phonesByMachine.map((phone, index) => (
-                <p key={index}>{phone}</p>
-              ))}
+          {/* Display the phones by machine */}
+          {phonesByMachine && phonesByMachine.length > 0 && (
+            <div className="mt-4 p-3 w-full h-[300px] no-scrollbar overflow-scroll border-[1.5px] border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)]">
+              <h3 className="font-bold mb-2">Phones by Machine:</h3>
+              <div className="flex flex-row gap-4 flex-wrap">
+                {phonesByMachine.map((phone, index) => (
+                  <p key={index}>{phone}</p>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
         </div>
       </div>
     </div>

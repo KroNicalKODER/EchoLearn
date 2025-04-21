@@ -1,45 +1,53 @@
-import Conversation from "../models/transcript.schema.js";
+import { Conversation, Message } from "../models/transcript.schema.js";
 
 export const saveTranscript = async (req, res) => {
-    try {
-        const { transcript, roomId } = req.body;
-        const newMessage = {
-            message: transcript,
-            timestamp: new Date(),
-        };
+  console.log("Saving transcript...");
+  try {
+    const { transcript, roomId, email } = req.body;
 
-        let conversation = await Conversation.findOne({ roomId });
+    // Create and save the new message
+    const messageDoc = await Message.create({
+      email,
+      message: transcript,
+      timestamp: new Date(),
+    });
 
-        if (!conversation) {
-            conversation = new Conversation({
-                roomId,
-                messages: [newMessage],
-            });
-        } else {
-            conversation.messages.push(newMessage);
-        }
+    // Find or create the conversation
+    let conversation = await Conversation.findOne({ roomId });
 
-        await conversation.save();
-        res.status(201).json({ message: "Transcript saved successfully" });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Server error" });
+    if (!conversation) {
+      conversation = new Conversation({
+        roomId,
+        messages: [messageDoc._id],
+      });
+    } else {
+      conversation.messages.push(messageDoc._id);
     }
+
+    await conversation.save();
+    console.log("Transcript saved successfully");
+    res.status(201).json({ message: "Transcript saved successfully" });
+  } catch (error) {
+    console.error("Error saving transcript:", error);
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 export const getTranscripts = async (req, res) => {
-    try {
-        const { roomId } = req.params;
-        const conversation = await Conversation.findOne({ roomId });
+  try {
+    const { roomId } = req.params;
 
-        if (!conversation) {
-            return res.status(404).json({ message: "Conversation not found" });
-        }
+    const conversation = await Conversation.findOne({ roomId }).populate(
+      "messages"
+    );
 
-        res.status(200).json({ conversation });
+    if (!conversation) {
+      return res.status(404).json({ message: "Conversation not found" });
     }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Server error" });
-    }
-}
+
+    res.status(200).json({ messages: conversation.messages });
+  } catch (error) {
+    console.error("Error fetching transcripts:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
