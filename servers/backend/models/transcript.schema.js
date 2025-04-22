@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 // Message Schema
 const messageSchema = new mongoose.Schema({
-//   speakerId: {
-//     type: String,
-//     required: true,
-//   },
   message: {
+    type: String,
+    required: true,
+  },
+  email: {
     type: String,
     required: true,
   },
@@ -14,30 +14,24 @@ const messageSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-//   messageType: {
-//     type: String,
-//     enum: ['speech', 'text'],
-//     required: true,
-//   },
 });
 
-// Conversation Schema
-const conversationSchema = new mongoose.Schema({
-  roomId: {
-    type: String,
-    required: true,
+const conversationSchema = new mongoose.Schema(
+  {
+    roomId: {
+      type: String,
+      required: true,
+    },
+    messages: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Message",
+      },
+    ],
   },
-//   user1Id: {
-//     type: String,
-//     required: true,
-//   },
-//   user2Id: {
-//     type: String,
-//     required: true,
-//   },
-  messages: [messageSchema],
-}, { timestamps: true });
+  { timestamps: true }
+);
 
-const Conversation = mongoose.model('Conversation', conversationSchema);
-
-export default Conversation;
+const Conversation = mongoose.model("Conversation", conversationSchema);
+const Message = mongoose.model("Message", messageSchema);
+export { Message, Conversation };
