@@ -9,9 +9,12 @@ from pydub import AudioSegment
 import io
 import os
 from concurrent.futures import ThreadPoolExecutor
+from langchain_ollama import OllamaLLM
 
 from RandomExercise import generate_random_exercise, translate
 from Translation import translate_text
+import subprocess
+import time
 
 load_dotenv()
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
