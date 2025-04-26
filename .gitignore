@@ -3,3 +3,4 @@ major_2
 config.js
 *.env
 ML_modals
+*trash
