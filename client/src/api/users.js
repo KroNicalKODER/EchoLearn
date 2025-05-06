@@ -43,3 +43,13 @@ export const getAllUsers = async () => {
     throw error;
   }
 };
+
+export const getAllVideoCalls = async (email) => {
+  try {
+    const response = await userInstance.get(`/getAllVideoCalls/${email}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

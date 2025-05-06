@@ -15,9 +15,9 @@ UPLOADS1_FOLDER = 'uploads1'
 def process_audio_files(request):
     if 'audio' not in request.files or 'text' not in request.files:
         return jsonify({"error": "Audio or text file missing"}), 400
-
     audio_file = request.files['audio']
     text_file = request.files['text']
+    
     audio_path = os.path.join(UPLOAD_FOLDER, audio_file.filename)
     text_path = os.path.join(UPLOAD_FOLDER, text_file.filename)
     text1_path = os.path.join(UPLOADS1_FOLDER, text_file.filename.replace('.txt', '1.txt'))

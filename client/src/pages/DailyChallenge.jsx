@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import config from "../config";
 import axios from "axios";
+// import { calculateScore } from "../utils/scoreCalculator";
+import googleAudio from "../../../servers/models/uploads1/audio1.wav";
 
 const DailyChallenge = () => {
   const [topic, setTopic] = useState("");
@@ -10,9 +12,10 @@ const DailyChallenge = () => {
   const [loading, setLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [recognition, setRecognition] = useState(null);
-  const [audioBlob, setAudioBlob] = useState(null); // State for storing audio blob
+  const [audioBlob, setAudioBlob] = useState(null);
   const [phones, setPhones] = useState([]);
   const [phonesByMachine, setPhonesByMachine] = useState([]);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
@@ -105,14 +108,17 @@ const DailyChallenge = () => {
           setLoading(false);
           return;
         }
-
         // Create a text file with the transcribed text
-        const scriptBlob = new Blob([generatedScript.split(":")[1]], {
+        const scriptBlob = new Blob([generatedScript], {
           type: "text/plain",
         });
 
-        // Create a FormData object and append the text file
+        const scriptBlob1 = new Blob([transcribedText], {
+          type: "text/plain",
+        });
+
         const formData1 = new FormData();
+        formData1.append("text1", scriptBlob1, "audio.txt");
         formData1.append("text", scriptBlob, "audio.txt");
         formData1.append("audio", audioBlob, "audio.wav");
         formData1.append("topic", topic);
@@ -125,30 +131,12 @@ const DailyChallenge = () => {
 
         const data1 = await response1.blob();
         if (response1.ok) {
-          // const response = await fetch('http://localhost:5001/tgtojson', {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //   },
-          // })
-
           const response = await axios.post(`http://localhost:5001/tgtojson`);
           console.log("Response:", response.data);
           setPhones(response.data.phones);
           setPhonesByMachine(response.data.phonesByMachine);
+          setScore(response.data.score.finalScore);
 
-          console.log("Response:", response);
-          console.log("Response:", response.data);
-
-          // const url = window.URL.createObjectURL(data1);
-          // const a = document.createElement("a");
-          // a.href = url;
-          // a.download = "audio_transcription.TextGrid";
-          // document.body.appendChild(a);
-          // a.click();
-          // document.body.removeChild(a);
-
-          // Save the file locally for further operations
           const localFile = new File([data1], "audio_transcription.TextGrid", {
             type: data1.type,
           });
@@ -234,12 +222,6 @@ const DailyChallenge = () => {
     recognition.onend = () => {
       setIsListening(false);
     };
-  };
-
-  const handleGetPhones = async () => {
-    const response = await axios.post(`http://localhost:5001/tgtojson`);
-    setPhones(response.data.phones);
-    setPhonesByMachine(response.data.phonesByMachine);
   };
 
   return (
@@ -341,9 +323,31 @@ const DailyChallenge = () => {
             <p>{generatedScript}</p>
           </div>
         )}
+        {phonesByMachine && phonesByMachine.length > 0 && (
+          // <div>Score: {calculateScore(phones, phonesByMachine)}</div>
+          <div>Score: {score}</div>
+        )}
+
+        <div className="flex flex-col justify-start">
+          <div>
+            <audio
+              controls
+              src={audioBlob ? URL.createObjectURL(audioBlob) : ""}
+              className="mt-4"
+              style={{ display: audioBlob ? "block" : "none" }}
+            />
+          </div>
+          <div>
+            <audio
+              controls
+              src={googleAudio}
+              className="mt-4"
+              style={{ display: audioBlob ? "block" : "none" }}
+            />
+          </div>
+        </div>
 
         <div className="flex flex-row w-full gap-8">
-          {/* Display the phones */}
           {phones && phones.length > 0 && (
             <div className="mt-4 p-3 w-full h-[300px] no-scrollbar overflow-scroll border-[1.5px] border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)]">
               <h3 className="font-bold mb-2">Phones:</h3>
@@ -355,7 +359,6 @@ const DailyChallenge = () => {
             </div>
           )}
 
-          {/* Display the phones by machine */}
           {phonesByMachine && phonesByMachine.length > 0 && (
             <div className="mt-4 p-3 w-full h-[300px] no-scrollbar overflow-scroll border-[1.5px] border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)]">
               <h3 className="font-bold mb-2">Phones by Machine:</h3>

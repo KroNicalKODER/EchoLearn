@@ -26,23 +26,31 @@ const RoomPage = () => {
       alert("Speech recognition is not supported in this browser.");
       return;
     }
-    console.log("Push and talk", isListening);
+
     if (isListening) {
       recognition.stop();
       setIsListening(false);
     } else {
-      recognition.start();
-      setIsListening(true);
+      try {
+        recognition.start();
+        setIsListening(true);
+      } catch (e) {
+        console.error("Error starting recognition: ", e);
+      }
     }
+  };
 
-    recognition.onresult = async (event) => {
+  useEffect(() => {
+    if (!recognition) return;
+
+    recognition.onresult = (event) => {
       let finalTranscript = "";
       for (let i = event.resultIndex; i < event.results.length; i++) {
         if (event.results[i].isFinal) {
           finalTranscript += event.results[i][0].transcript + " ";
         }
       }
-      setSpeech((prevSpeech) => prevSpeech + " " + finalTranscript);
+      setSpeech((prev) => prev + " " + finalTranscript);
     };
 
     recognition.onerror = (event) => {
@@ -53,7 +61,7 @@ const RoomPage = () => {
     recognition.onend = () => {
       setIsListening(false);
     };
-  };
+  }, [recognition, isListening]);
 
   const handleStopListening = () => {
     if (recognition) {
@@ -93,6 +101,18 @@ const RoomPage = () => {
     setRoomId(roomId);
     setRemoteSocketId(id);
   }, []);
+
+  useEffect(() => {
+    // If we arrive at the room page without joining, join now
+    if (roomIdParam && !roomId) {
+      socket.emit("room:join", {
+        roomId: roomIdParam,
+        password: "123",
+        email: user.email,
+      });
+      setRoomId(roomIdParam);
+    }
+  }, [roomIdParam]);
 
   const handleCallUser = useCallback(async () => {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -214,7 +234,7 @@ const RoomPage = () => {
             Start Call
           </button>
         )}
-        <div className="flex flex-row gap-6">
+        <div className="flex flex-col xl:flex-row gap-6">
           <div className="flex flex-col gap-4 w-full justify-center items-center shadow-md p-4 rounded-md">
             <div className="font-semibold text-gray-200">Cam 1 (You)</div>
             {myStream ? (
@@ -223,7 +243,6 @@ const RoomPage = () => {
                 playing={true}
                 width="500px"
                 height="300px"
-                style={{ borderRadius: "8px" }}
               />
             ) : (
               <div className="w-[500px] h-[300px] flex items-center justify-center rounded-md">

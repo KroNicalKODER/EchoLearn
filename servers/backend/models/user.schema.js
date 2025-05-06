@@ -27,6 +27,17 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    memories: [
+      {
+        type: String,
+      },
+    ],
+    videoCalls: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Conversation",
+      },
+    ],
   },
   { timestamps: true }
 );

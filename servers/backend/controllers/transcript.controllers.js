@@ -1,18 +1,17 @@
 import { Conversation, Message } from "../models/transcript.schema.js";
+import User from "../models/user.schema.js";
 
 export const saveTranscript = async (req, res) => {
   console.log("Saving transcript...");
   try {
     const { transcript, roomId, email } = req.body;
 
-    // Create and save the new message
     const messageDoc = await Message.create({
       email,
       message: transcript,
       timestamp: new Date(),
     });
 
-    // Find or create the conversation
     let conversation = await Conversation.findOne({ roomId });
 
     if (!conversation) {
@@ -21,11 +20,16 @@ export const saveTranscript = async (req, res) => {
         messages: [messageDoc._id],
       });
     } else {
+      const participantExists = conversation.participants.some(
+        (participant) => participant === email
+      );
+      if (!participantExists) {
+        conversation.participants.push(email);
+      }
       conversation.messages.push(messageDoc._id);
     }
 
     await conversation.save();
-    console.log("Transcript saved successfully");
     res.status(201).json({ message: "Transcript saved successfully" });
   } catch (error) {
     console.error("Error saving transcript:", error);

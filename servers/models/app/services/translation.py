@@ -1,7 +1,7 @@
 from langchain_ollama import OllamaLLM
 from langchain.prompts import ChatPromptTemplate
 
-llama = OllamaLLM(model="llama3.2")
+llama = OllamaLLM(model="llama3.2:1b")
 
 def translate(from_language, to_language, text):
     prompt = ChatPromptTemplate.from_messages([

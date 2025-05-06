@@ -43,15 +43,19 @@ const Aitutor = () => {
 
   const getAndPlayAudio = async (text) => {
     try {
-      const response = await axios.post(`http://127.0.0.1:5000/get_audio`, { text }, {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        withCredentials: true,
-        responseType: 'blob'
-      });
+      const response = await axios.post(
+        `http://127.0.0.1:5002/get_audio`,
+        { text },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+          responseType: "blob",
+        }
+      );
       console.log(response);
-      const audioBlob = new Blob([response.data], { type: 'audio/wav' });
+      const audioBlob = new Blob([response.data], { type: "audio/wav" });
       const audioUrl = URL.createObjectURL(audioBlob);
       const audioElement = new Audio(audioUrl);
       audioElement.play();
@@ -73,55 +77,59 @@ const Aitutor = () => {
     }
   };
 
-  const newMeBlock = (text)=> {
+  const newMeBlock = (text) => {
     return (
       <div className="chat chat-end">
-        <div className="chat-bubble max-w-[70%]">
-          {text}
-        </div>
-        <span onClick={() => getAndPlayAudio(text)} className="cursor-pointer"><i className="bi bi-volume-up-fill"></i></span>
+        <div className="chat-bubble max-w-[70%]">{text}</div>
+        <span onClick={() => getAndPlayAudio(text)} className="cursor-pointer">
+          <i className="bi bi-volume-up-fill"></i>
+        </span>
       </div>
-    )
-  }
+    );
+  };
 
-  const newAIBlock = (text)=> {
+  const newAIBlock = (text) => {
     return (
       <div className="chat chat-start">
-        <div className="chat-bubble max-w-[70%]">
-          {text}
-        </div>
-        <span onClick={() => getAndPlayAudio(text)} className="cursor-pointer"><i className="bi bi-volume-up-fill"></i></span>
+        <div className="chat-bubble max-w-[70%]">{text}</div>
+        <span onClick={() => getAndPlayAudio(text)} className="cursor-pointer">
+          <i className="bi bi-volume-up-fill"></i>
+        </span>
       </div>
-    )
-  }
+    );
+  };
 
-  const getAIResponse = useCallback(async (text) => {
-    text = text.trim();
-    if (text === "") return;
-    try {
-      setUIMessages(prev => [...prev, newMeBlock(text)]);
-      console.log(text);
-      const response = await axios.post(`http://127.0.0.1:5000/chat`, { query: text }, {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        withCredentials: true,
-      });
-      console.log(response);
-      getAndPlayAudio(response.data.response);
-      setUIMessages(prev => [...prev, newAIBlock(response.data.response)]);
-    } catch (error) {
-      console.error("Error fetching audio:", error);
-    }
-  }, [UIMessages]);
-
+  const getAIResponse = useCallback(
+    async (text) => {
+      text = text.trim();
+      if (text === "") return;
+      try {
+        setUIMessages((prev) => [...prev, newMeBlock(text)]);
+        console.log(text);
+        const response = await axios.post(
+          `http://127.0.0.1:5002/chat`,
+          { query: text },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        console.log(response);
+        getAndPlayAudio(response.data.response);
+        setUIMessages((prev) => [...prev, newAIBlock(response.data.response)]);
+      } catch (error) {
+        console.error("Error fetching audio:", error);
+      }
+    },
+    [UIMessages]
+  );
 
   return (
     <div className="flex flex-col w-full justify-center items-center">
       <div className="w-full h-[calc(100vh-240px)] overflow-y-auto">
-        {UIMessages.map((message, index) => (
-          message
-        ))}
+        {UIMessages.map((message, index) => message)}
       </div>
       <textarea
         value={transcribedText}
@@ -131,22 +139,21 @@ const Aitutor = () => {
         cols="50"
         className="w-full mt-2 border-[1.5px] px-3 py-1 border-[#A804F8] rounded-md bg-[rgba(171,0,255,0.14)] mb-4"
       />
-      <div className="flex gap-2"> 
-
-      <button
-        onClick={handleStartStopRecording}
-        className="text-sm w-[150px] text-white px-3 py-2 rounded-xs bg-red-500 cursor-pointer"
+      <div className="flex gap-2">
+        <button
+          onClick={handleStartStopRecording}
+          className="text-sm w-[150px] text-white px-3 py-2 rounded-xs bg-red-500 cursor-pointer"
         >
-        {isRecording ? "Stop Recording" : "Start Recording"}
-      </button>
+          {isRecording ? "Stop Recording" : "Start Recording"}
+        </button>
 
-      <button
-        onClick={() => getAIResponse(transcribedText)}
-        className="text-sm w-[150px] text-white px-3 py-2 rounded-xs bg-red-500 cursor-pointer"
+        <button
+          onClick={() => getAIResponse(transcribedText)}
+          className="text-sm w-[150px] text-white px-3 py-2 rounded-xs bg-red-500 cursor-pointer"
         >
-        {loading ? "Loading..." : "Get Response"}
-      </button>
-        </div>
+          {loading ? "Loading..." : "Get Response"}
+        </button>
+      </div>
     </div>
   );
 };
